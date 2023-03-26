@@ -8,8 +8,9 @@
   },
   "scripts": {
     "at": "node runner.js",
-    "allure": "allure generate allure/allure-results --clean -o allure/allure-report",
-    "report": "allure generate allure/allure-results --clean -o allure/allure-report && allure open allure/allure-report"
+		"allure-result": "allure generate allure/allure-results --clean -o allure/allure-report",
+		"allure-report": "allure open allure/allure-report",
+		"at-report": "yarn allure-result && yarn allure-report",
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
