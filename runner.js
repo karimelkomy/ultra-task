@@ -49,3 +49,4 @@
     await testcafe.close();
   }
 })();
+
