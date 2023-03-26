@@ -35,8 +35,7 @@ jobs:
       - name: Run tests
         run: |
           yarn at ${{ inputs.params }} --headless true
-          yarn allure
-          ls
+          yarn allure-result
 
       - name: Upload allure folder
         uses: actions/upload-artifact@v3
