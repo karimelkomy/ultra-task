@@ -25,6 +25,12 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+        
+      - name: Create needed Folders
+        run: | 
+          mkdir allure
+          mkdir Screenshots
+          mkdir Videos
 
       - name: Run tests
         run: yarn at ${{ inputs.params }} --headless true
