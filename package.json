@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "at": "node runner.js"
+    "at": "node runner.js",
+    "report": "allure generate allure/allure-results --clean -o allure/allure-report && allure open allure/allure-report"
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
