@@ -36,11 +36,12 @@ jobs:
         run: |
           yarn at ${{ inputs.params }} --headless true
           yarn allure
+          ls
 
       - name: Upload allure folder
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: allure
-          path: /allure
+          path: allure
 
