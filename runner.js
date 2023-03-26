@@ -42,10 +42,6 @@
       disableMultipleWindows: true,
       disableDevShmUsage: true,
     });
-
-    await exec(
-      "allure generate allure/allure-results --clean -o allure/allure-report && allure open allure/allure-report"
-    );
   } catch (err) {
     console.log("Error:", err);
   } finally {
