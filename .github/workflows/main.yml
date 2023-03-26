@@ -33,7 +33,9 @@ jobs:
           mkdir Videos
 
       - name: Run tests
-        run: yarn at ${{ inputs.params }} --headless true
+        run: |
+          yarn at ${{ inputs.params }} --headless true
+          yarn allure
 
       - name: Upload allure folder
         uses: actions/upload-artifact@v3
