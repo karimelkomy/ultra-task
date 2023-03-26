@@ -1,0 +1,38 @@
+name: Automated-Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      params:
+        description: 'Parameters'
+  schedule:
+    - cron: '0 20 * * *'
+  push:
+    branches:
+      - main-no-push
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Setup Node Version 14
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run tests
+        run: yarn at ${{ inputs.params }} --headless true
+
+      - name: Upload allure folder
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: allure
+          path: /home/runner/work/ultra-task/allure
+
