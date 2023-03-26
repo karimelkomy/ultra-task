@@ -4,23 +4,26 @@
   const { exec } = require("child_process");
   const args = require("minimist")(process.argv.slice(2));
   const customTest = args.customTest;
+  const browser = args.headless
+    ? "chrome:headless --window-size=1680,1050"
+    : "chrome --window-size=1680,1050";
 
   try {
     const runner = testcafe
       .createRunner()
       .src(`tests/*.js`)
-      .browsers("chrome --disable-dev-shm-usage")
+      .browsers(browser)
       .reporter(["spec", "allure-expanded"])
       .screenshots({
         path: "Screenshots",
         takeOnFails: true,
         pathPattern:
-          "${DATE}_${TIME}/${TEST}/${USERAGENT}/${QUARANTINE_ATTEMPT}.png"
+          "${DATE}_${TIME}/${TEST}/${USERAGENT}/${QUARANTINE_ATTEMPT}.png",
       })
       .video("Videos", {
         singleFile: false,
         failedOnly: false,
-        pathPattern: "${DATE}_${TIME}/${TEST}/${USERAGENT}/${FILE_INDEX}.mp4"
+        pathPattern: "${DATE}_${TIME}/${TEST}/${USERAGENT}/${FILE_INDEX}.mp4",
       });
 
     runner.filter(
@@ -37,7 +40,7 @@
       skipJsErrors: true,
       skipUncaughtErrors: true,
       disableMultipleWindows: true,
-      disableDevShmUsage: true
+      disableDevShmUsage: true,
     });
 
     await exec(
@@ -49,4 +52,3 @@
     await testcafe.close();
   }
 })();
-
