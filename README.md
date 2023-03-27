@@ -1,5 +1,9 @@
 # Readme
 
+# Info
+
+Test automation framework based on TestCafe and JavaScript and it is using page object model approach to cover the testing activities of Sawg Labs
+
 # Setup
 
 - Run `npm install` to install all the dependencies
